@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const ShieldIcon: React.FC = () => (
@@ -9,10 +8,10 @@ const ShieldIcon: React.FC = () => (
 
 const EmergencyFundGuide: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#FDFDFD] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#FDFDFD] dark:bg-gray-900 text-[#1A1A1A] dark:text-gray-200">
       <div className="p-6 md:p-12">
         <header className="mb-12">
-          <a href="/" className="text-[#2A6F6F] hover:underline text-lg font-semibold">
+          <a href="/" className="text-[#2A6F6F] dark:text-teal-400 hover:underline text-lg font-semibold">
             &larr; Back to Home
           </a>
         </header>
@@ -21,16 +20,16 @@ const EmergencyFundGuide: React.FC = () => {
             <div className="bg-[#2A6F6F] h-32 w-32 rounded-full flex items-center justify-center mx-auto shadow-lg">
                 <ShieldIcon />
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mt-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] dark:text-white mt-6">
                 Emergency Fund Roadmap
             </h1>
-            <p className="mt-4 text-xl md:text-2xl text-[#2A6F6F]">
+            <p className="mt-4 text-xl md:text-2xl text-[#2A6F6F] dark:text-teal-400">
                 Your first step to financial safety.
             </p>
           </div>
           
-          <div className="space-y-8 text-xl text-gray-700 leading-relaxed bg-white p-8 rounded-lg shadow-sm border">
-            <h2 className="text-3xl font-bold text-[#1A1A1A]">What is an Emergency Fund?</h2>
+          <div className="space-y-8 text-xl text-gray-700 dark:text-gray-300 leading-relaxed bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border dark:border-gray-700">
+            <h2 className="text-3xl font-bold text-[#1A1A1A] dark:text-white">What is an Emergency Fund?</h2>
             <p>
                 Think of an emergency fund as your own personal safety net. It's money you save ONLY for real emergencies. Not for a new phone, but for things like:
             </p>
@@ -43,7 +42,7 @@ const EmergencyFundGuide: React.FC = () => {
                 Having this money saved means you don't have to take a high-interest loan or borrow from friends when trouble hits.
             </p>
 
-            <h2 className="text-3xl font-bold text-[#1A1A1A]">How to Start: The ₹500 Goal</h2>
+            <h2 className="text-3xl font-bold text-[#1A1A1A] dark:text-white">How to Start: The ₹500 Goal</h2>
             <p>
                 Don't worry about saving thousands right away. Your first goal is simple: <strong>save ₹500.</strong>
             </p>

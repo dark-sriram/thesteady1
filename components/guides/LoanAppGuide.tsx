@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const LoanIcon: React.FC = () => (
@@ -10,10 +9,10 @@ const LoanIcon: React.FC = () => (
 
 const LoanAppGuide: React.FC = () => {
   return (
-    <div className="min-h-screen bg-[#FDFDFD] text-[#1A1A1A]">
+    <div className="min-h-screen bg-[#FDFDFD] dark:bg-gray-900 text-[#1A1A1A] dark:text-gray-200">
       <div className="p-6 md:p-12">
         <header className="mb-12">
-          <a href="/" className="text-[#2A6F6F] hover:underline text-lg font-semibold">
+          <a href="/" className="text-[#2A6F6F] dark:text-teal-400 hover:underline text-lg font-semibold">
             &larr; Back to Home
           </a>
         </header>
@@ -22,16 +21,16 @@ const LoanAppGuide: React.FC = () => {
             <div className="bg-red-500 h-32 w-32 rounded-full flex items-center justify-center mx-auto shadow-lg">
                 <LoanIcon />
             </div>
-            <h1 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] mt-6">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#1A1A1A] dark:text-white mt-6">
                 Break the Loan App Cycle
             </h1>
-            <p className="mt-4 text-xl md:text-2xl text-red-600">
+            <p className="mt-4 text-xl md:text-2xl text-red-600 dark:text-red-400">
                 You are not alone. There is a way out.
             </p>
           </div>
           
-          <div className="space-y-8 text-xl text-gray-700 leading-relaxed bg-white p-8 rounded-lg shadow-sm border">
-            <h2 className="text-3xl font-bold text-[#1A1A1A]">The Trap of Instant Loans</h2>
+          <div className="space-y-8 text-xl text-gray-700 dark:text-gray-300 leading-relaxed bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border dark:border-gray-700">
+            <h2 className="text-3xl font-bold text-[#1A1A1A] dark:text-white">The Trap of Instant Loans</h2>
             <p>
                 Instant loan apps seem like a quick fix when you're short on cash. But their high interest rates, hidden fees, and aggressive collection tactics can trap you in a cycle of debt where you're forced to take a new loan just to pay off the old one. This is a very stressful and difficult situation.
             </p>
@@ -39,7 +38,7 @@ const LoanAppGuide: React.FC = () => {
                 Please know: It is not your fault. These apps are designed to be a trap.
             </p>
 
-            <h2 className="text-3xl font-bold text-[#1A1A1A]">Your 3-Step Plan to Freedom</h2>
+            <h2 className="text-3xl font-bold text-[#1A1A1A] dark:text-white">Your 3-Step Plan to Freedom</h2>
             <p>
                 Getting out feels impossible, but you can do it with a clear plan.
             </p>
@@ -55,9 +54,9 @@ const LoanAppGuide: React.FC = () => {
                 </li>
             </ol>
             
-            <div className="mt-6 p-4 bg-teal-50/50 rounded-md border-l-4 border-teal-500">
-                <h3 className="font-bold text-gray-800 text-2xl">Talk to Us</h3>
-                <p className="text-gray-700 mt-2">
+            <div className="mt-6 p-4 bg-teal-50/50 dark:bg-gray-700/50 rounded-md border-l-4 border-teal-500">
+                <h3 className="font-bold text-gray-800 dark:text-gray-200 text-2xl">Talk to Us</h3>
+                <p className="text-gray-700 dark:text-gray-300 mt-2">
                     You do not have to do this by yourself. Message us on WhatsApp. We can listen without judgment and help you make a plan that works for you. We are here to support you.
                 </p>
             </div>
