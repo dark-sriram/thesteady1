@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const WhatsAppIcon: React.FC = () => (
@@ -11,17 +10,17 @@ const Hero: React.FC = () => {
   const WHATSAPP_LINK = "https://wa.me/917200700290?text=I'm%20interested%20in%20free%20financial%20coaching";
   
   return (
-    <section className="text-center px-6 py-16 md:py-24 bg-white">
+    <section className="text-center px-6 py-16 md:py-24 bg-white overflow-hidden">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-[#1A1A1A] leading-tight">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-[#1A1A1A] leading-tight opacity-0 animate-fade-in-up">
           Steady money for unsteady lives.
         </h1>
-        <p className="mt-6 text-xl md:text-2xl text-[#2A6F6F]">
+        <p className="mt-6 text-xl md:text-2xl text-[#2A6F6F] opacity-0 animate-fade-in-up animation-delay-200">
           Free financial coaching in your WhatsApp — no app, no stress.
         </p>
-        <div className="mt-10 relative inline-block">
+        <div className="mt-10 relative inline-block opacity-0 animate-scale-in animation-delay-400">
           <div className="bg-gray-200 h-64 w-64 rounded-full flex items-center justify-center">
-             <div className="bg-green-500 h-56 w-56 rounded-full flex items-center justify-center shadow-lg">
+             <div className="bg-green-500 h-56 w-56 rounded-full flex items-center justify-center shadow-lg animate-slow-pulse animation-delay-1000">
                 <WhatsAppIcon />
              </div>
           </div>
@@ -29,7 +28,7 @@ const Hero: React.FC = () => {
             Save ₹20 now?
           </div>
         </div>
-        <div className="mt-12">
+        <div className="mt-12 opacity-0 animate-fade-in-up animation-delay-800">
           <a
             href={WHATSAPP_LINK}
             target="_blank"

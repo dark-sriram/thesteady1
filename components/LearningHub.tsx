@@ -1,6 +1,7 @@
 
 import React from 'react';
 import type { GuideCardProps } from '../types';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const ShieldIcon: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -24,8 +25,8 @@ const LoanIcon: React.FC = () => (
     </svg>
 );
 
-const GuideCard: React.FC<GuideCardProps> = ({ icon, title }) => (
-    <a href="#" className="block p-6 rounded-lg bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+const GuideCard: React.FC<GuideCardProps & { href: string }> = ({ icon, title, href }) => (
+    <a href={href} className="block p-6 rounded-lg bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
         <div className="flex items-center">
             <div className="bg-[#2A6F6F] p-3 rounded-full">
                 {icon}
@@ -37,21 +38,25 @@ const GuideCard: React.FC<GuideCardProps> = ({ icon, title }) => (
 
 
 const LearningHub: React.FC = () => {
-    const guides: GuideCardProps[] = [
-        { icon: <ShieldIcon />, title: "Emergency Fund Roadmap" },
-        { icon: <MoneyIcon />, title: "If You Want to Be a Millionaire…" },
-        { icon: <ChartIcon />, title: "Mutual Funds for Beginners" },
-        { icon: <LoanIcon />, title: "Break the Loan App Cycle" },
+    const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+    
+    const guides = [
+        { icon: <ShieldIcon />, title: "Emergency Fund Roadmap", href: "/guides/emergency-fund" },
+        { icon: <MoneyIcon />, title: "If You Want to Be a Millionaire…", href: "#" },
+        { icon: <ChartIcon />, title: "Mutual Funds for Beginners", href: "#" },
+        { icon: <LoanIcon />, title: "Break the Loan App Cycle", href: "#" },
     ];
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section ref={ref} className={`py-16 md:py-24 bg-white section-animate ${isVisible ? 'is-visible' : ''}`}>
             <div className="max-w-6xl mx-auto px-6">
-                <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12">
+                <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12 animate-child animate-child-1">
                     Free guides for everyone
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {guides.map((guide, index) => (
-                        <GuideCard key={index} {...guide} />
+                        <div key={index} className={`animate-child animate-child-${index + 2}`}>
+                            <GuideCard {...guide} />
+                        </div>
                     ))}
                 </div>
             </div>

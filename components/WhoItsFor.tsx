@@ -1,6 +1,7 @@
 
 import React from 'react';
 import type { PersonaCardProps } from '../types';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const GigRiderIcon: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#2A6F6F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -26,7 +27,7 @@ const OlderAdultIcon: React.FC = () => (
 );
 
 const PersonaCard: React.FC<PersonaCardProps> = ({ icon, title, description }) => (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-100 flex flex-col items-center text-center h-full">
         <div className="mb-4">{icon}</div>
         <h3 className="text-2xl font-bold text-[#1A1A1A]">{title}</h3>
         <p className="mt-2 text-lg text-gray-600">“{description}”</p>
@@ -34,6 +35,8 @@ const PersonaCard: React.FC<PersonaCardProps> = ({ icon, title, description }) =
 );
 
 const WhoItsFor: React.FC = () => {
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+  
   const personas: PersonaCardProps[] = [
     { icon: <GigRiderIcon />, title: "Gig Riders", description: "Earn ₹0–₹1500/day. Save without a salary." },
     { icon: <StreetVendorIcon />, title: "Street Vendors", description: "Cash in hand? We track it." },
@@ -42,14 +45,16 @@ const WhoItsFor: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section ref={ref} className={`py-16 md:py-24 bg-white section-animate ${isVisible ? 'is-visible' : ''}`}>
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12 animate-child animate-child-1">
           Built for real people like you
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {personas.map((persona, index) => (
-            <PersonaCard key={index} {...persona} />
+            <div key={index} className={`animate-child animate-child-${index + 2}`}>
+                <PersonaCard {...persona} />
+            </div>
           ))}
         </div>
       </div>

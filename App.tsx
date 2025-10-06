@@ -9,6 +9,8 @@ import TrustBadges from './components/TrustBadges';
 import StickyFooter from './components/StickyFooter';
 import HowItWorksPage from './components/HowItWorksPage';
 import LearnPage from './components/LearnPage';
+import MentorPage from './components/MentorPage';
+import EmergencyFundGuide from './components/guides/EmergencyFundGuide';
 
 const App: React.FC = () => {
   // Simple router to handle the new page
@@ -20,6 +22,14 @@ const App: React.FC = () => {
   
   if (path === '/learn') {
     return <LearnPage />;
+  }
+
+  if (path === '/mentor') {
+    return <MentorPage />;
+  }
+
+  if (path === '/guides/emergency-fund') {
+    return <EmergencyFundGuide />;
   }
 
   return (

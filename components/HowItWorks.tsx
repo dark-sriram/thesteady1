@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const ShareIcon: React.FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#2A6F6F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -18,6 +19,8 @@ const GrowIcon: React.FC = () => (
 );
 
 const HowItWorks: React.FC = () => {
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+  
   const steps = [
     {
       icon: <ShareIcon />,
@@ -53,9 +56,9 @@ const HowItWorks: React.FC = () => {
   };
 
   return (
-    <section className="py-16 md:py-24 bg-teal-50/50">
+    <section ref={ref} className={`py-16 md:py-24 bg-teal-50/50 section-animate ${isVisible ? 'is-visible' : ''}`}>
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12 animate-child animate-child-1">
           How THESTEADY Works
         </h2>
         <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12">
@@ -68,12 +71,14 @@ const HowItWorks: React.FC = () => {
               </>
             );
 
+            const cardClassName = `flex-1 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 animate-child animate-child-${index + 2}`;
+
             if (step.title === "1. Share") {
               return (
                 <button
                   key={index}
                   onClick={handleShare}
-                  className="flex-1 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                  className={`${cardClassName} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500`}
                   aria-label="Share this page"
                 >
                   {cardContent}
@@ -86,7 +91,7 @@ const HowItWorks: React.FC = () => {
                 <a
                   key={index}
                   href="/learn"
-                  className="flex-1 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300"
+                  className={cardClassName}
                 >
                   {cardContent}
                 </a>
@@ -94,7 +99,7 @@ const HowItWorks: React.FC = () => {
             }
             
             return (
-              <div key={index} className="flex-1 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm">
+              <div key={index} className={cardClassName}>
                 {cardContent}
               </div>
             );
