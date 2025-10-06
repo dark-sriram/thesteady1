@@ -2,108 +2,66 @@
 import React from 'react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
-const ShareIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#2A6F6F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-    </svg>
-);
-const LearnIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#2A6F6F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-    </svg>
-);
-const GrowIcon: React.FC = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-[#2A6F6F]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-    </svg>
-);
+interface StepCardProps {
+    index: number;
+    title: string;
+    description: string;
+    imageUrl: string;
+    bgColor: string;
+}
+
+const StepCard: React.FC<StepCardProps> = ({ index, title, description, imageUrl, bgColor }) => {
+    return (
+        <div className="flex-1 flex flex-col items-start p-4">
+            <div className={`rounded-2xl w-full h-56 flex items-center justify-center overflow-hidden ${bgColor}`}>
+                 <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+            </div>
+            <div className="mt-6">
+                <span className="text-xl font-bold text-gray-500">{(index + 1).toString().padStart(2, '0')}</span>
+                <h3 className="text-2xl font-bold text-[#1C1C1C] mt-2">{title}</h3>
+                <p className="mt-2 text-md text-gray-600">{description}</p>
+            </div>
+        </div>
+    );
+};
+
 
 const HowItWorks: React.FC = () => {
-  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
   
   const steps = [
     {
-      icon: <ShareIcon />,
-      title: "1. Share",
-      description: "Text or snap your income: EARN 500",
+      title: "Connect your accounts",
+      description: "Securely link your bank accounts and credit cards to give your coach a complete picture of your finances.",
+      imageUrl: "https://i.imgur.com/nophYyP.png",
+      bgColor: "bg-[#EAF3E8]"
     },
     {
-      icon: <LearnIcon />,
-      title: "2. Learn",
-      description: "Get smart nudges in WhatsApp",
+      title: "Get personalized insights",
+      description: "Your coach analyzes your spending, income, and goals to provide tailored advice and identify areas for improvement.",
+      imageUrl: "https://i.imgur.com/yV2gA5d.png",
+      bgColor: "bg-[#E0F2F1]"
     },
     {
-      icon: <GrowIcon />,
-      title: "3. Grow",
-      description: "Build confidence — one ₹10 save at a time",
+      title: "Receive empathetic nudges",
+      description: "Get timely reminders and encouragement to stay on track, delivered in a friendly, conversational style.",
+      imageUrl: "https://i.imgur.com/2Y5u06G.png",
+      bgColor: "bg-[#F9EFE5]"
     },
   ];
 
-  const handleShare = async () => {
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: 'THESTEADY - Steady money for unsteady lives.',
-          text: 'Free financial coaching in your WhatsApp — no app, no stress.',
-          url: window.location.origin,
-        });
-      } catch (error) {
-        console.error('Error sharing page:', error);
-      }
-    } else {
-      alert('Share feature is not available in your browser. Please copy the link manually.');
-    }
-  };
-
   return (
-    <section ref={ref} className={`py-16 md:py-24 bg-teal-50/50 section-animate ${isVisible ? 'is-visible' : ''}`}>
-      <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1A1A1A] mb-12 animate-child animate-child-1">
-          How THESTEADY Works
+    <section ref={ref} id="how-it-works" className={`py-20 md:py-28 section-animate ${isVisible ? 'is-visible' : ''}`}>
+      <div className="max-w-6xl mx-auto px-6">
+        <h2 className="text-4xl md:text-5xl font-bold text-center text-[#1C1C1C] mb-16 animate-child animate-child-1">
+          How it works
         </h2>
-        <div className="flex flex-col md:flex-row justify-center items-stretch gap-8 md:gap-12">
-          {steps.map((step, index) => {
-            const cardContent = (
-              <>
-                <div className="mb-4">{step.icon}</div>
-                <h3 className="text-2xl font-bold text-[#1A1A1A]">{step.title}</h3>
-                <p className="mt-2 text-xl text-gray-600">{step.description}</p>
-              </>
-            );
-
-            const cardClassName = `flex-1 flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 animate-child animate-child-${index + 2}`;
-
-            if (step.title === "1. Share") {
-              return (
-                <button
-                  key={index}
-                  onClick={handleShare}
-                  className={`${cardClassName} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500`}
-                  aria-label="Share this page"
-                >
-                  {cardContent}
-                </button>
-              );
-            }
-
-            if (step.title === "2. Learn") {
-              return (
-                <a
-                  key={index}
-                  href="/learn"
-                  className={cardClassName}
-                >
-                  {cardContent}
-                </a>
-              );
-            }
-            
-            return (
-              <div key={index} className={cardClassName}>
-                {cardContent}
-              </div>
-            );
-          })}
+        <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12">
+          {steps.map((step, index) => (
+             <div key={index} className={`w-full md:w-1/3 animate-child animate-child-${index + 2}`}>
+                <StepCard {...step} index={index} />
+             </div>
+          ))}
         </div>
       </div>
     </section>
