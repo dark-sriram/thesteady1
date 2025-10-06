@@ -42,9 +42,9 @@ const LearningHub: React.FC = () => {
     
     const guides = [
         { icon: <ShieldIcon />, title: "Emergency Fund Roadmap", href: "/guides/emergency-fund" },
-        { icon: <MoneyIcon />, title: "If You Want to Be a Millionaire…", href: "#" },
-        { icon: <ChartIcon />, title: "Mutual Funds for Beginners", href: "#" },
-        { icon: <LoanIcon />, title: "Break the Loan App Cycle", href: "#" },
+        { icon: <MoneyIcon />, title: "If You Want to Be a Millionaire…", href: "/guides/millionaire" },
+        { icon: <ChartIcon />, title: "Mutual Funds for Beginners", href: "/guides/mutual-funds" },
+        { icon: <LoanIcon />, title: "Break the Loan App Cycle", href: "/guides/loan-app-cycle" },
     ];
     return (
         <section ref={ref} className={`py-16 md:py-24 bg-white section-animate ${isVisible ? 'is-visible' : ''}`}>

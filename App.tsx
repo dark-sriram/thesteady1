@@ -11,6 +11,9 @@ import HowItWorksPage from './components/HowItWorksPage';
 import LearnPage from './components/LearnPage';
 import MentorPage from './components/MentorPage';
 import EmergencyFundGuide from './components/guides/EmergencyFundGuide';
+import MillionaireGuide from './components/guides/MillionaireGuide';
+import MutualFundsGuide from './components/guides/MutualFundsGuide';
+import LoanAppGuide from './components/guides/LoanAppGuide';
 
 const App: React.FC = () => {
   // Simple router to handle the new page
@@ -30,6 +33,18 @@ const App: React.FC = () => {
 
   if (path === '/guides/emergency-fund') {
     return <EmergencyFundGuide />;
+  }
+
+  if (path === '/guides/millionaire') {
+    return <MillionaireGuide />;
+  }
+
+  if (path === '/guides/mutual-funds') {
+    return <MutualFundsGuide />;
+  }
+
+  if (path === '/guides/loan-app-cycle') {
+    return <LoanAppGuide />;
   }
 
   return (
